@@ -46,7 +46,10 @@ public class ProjectsController : Controller
             return RedirectToAction("Auth", "Home");
         }
 
-        var project = _context.Projects.Include(p => p.Creator).FirstOrDefault(m => m.ProjectId == id);
+        var project = _context.Projects
+            .Include(p => p.Creator)
+            .Include(p => p.Contributions)
+            .FirstOrDefault(m => m.ProjectId == id);
     
         if (project == null)
         {

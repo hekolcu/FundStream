@@ -10,63 +10,47 @@
         hasContributed = ViewBag.HasContributed;
 }
 
-<h2>@Model.Title</h2>
-
-<div>
-    <p>
-        <strong>Description:</strong> @Model.Description
-    </p>
-    <p>
-        <strong>Goal Amount:</strong> @Model.GoalAmount.ToString("C")
-    </p>
-    <p>
-        <strong>Amount Raised:</strong> @Model.AmountRaised.ToString("C")
-    </p>
-    <p>
-        <strong>Funded:</strong> @Math.Round(percentageReached) % (@Model.Contributions.Count supporters)
-    </p>
-    <p>
-        <strong>Start Date:</strong> @Model.StartDate.ToShortDateString()
-    </p>
-    <p>
-        <strong>End Date:</strong> @Model.EndDate.ToShortDateString()
-    </p>
-    <p>
-        <strong>Time Left:</strong> @(daysLeft > 0 ? $"{daysLeft} days left" : "Campaign closed")
-    </p>
-    <p>
-        <strong>Creator:</strong> @Model.Creator?.FirstName @Model.Creator?.LastName
-    </p>
-
-    @if (Model.Creator?.UserId == loggedInUserId)
-    {
-        <p class="text-warning">Cannot pledge to your own project!</p>
-    }
-    else if (hasContributed)
-    {
-        <p class="text-success">Thank you for contributing!</p>
-    }
-    else
-    {
-        <form asp-controller="Projects" asp-action="Support" method="post">
-            <input type="hidden" asp-for="ProjectId" />
-            <div class="form-group">
-                <label for="supportAmount">Support Amount</label>
-                <input type="number" name="supportAmount" class="form-control" min="1" step="any" required />
-            </div>
-            <button type="submit" class="btn btn-primary mt-2">Support!</button>
-        </form>
-    }
-    
-    @if (loggedInUserId == Model.Creator?.UserId)
-    {
-        <form asp-action="Delete" asp-route-id="@Model.ProjectId" method="post">
-            <input type="hidden" asp-for="ProjectId" />
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    }
-    <a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
+<div class="text-center">
+    <h2>@Model.Title</h2>
+    <p class="lead">@Model.Description</p>
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="display-4">@Model.AmountRaised.ToString("C")</h2>
+        <h4>Pledged of @Model.GoalAmount.ToString("C") goal</h4>
+        <h2 class="mt-2">@Model.Contributions.Count</h2>
+        <h4>Supporters</h4>
+        <h2>Ends: @Model.EndDate.ToString("MMMM d")</h2>
+        <h2 class="text-info">@daysLeft days left</h2>
+    </div>
+
+    <div class="col-md-6">
+        @if (Model.Creator?.UserId == loggedInUserId)
+        {
+            <h2 class="text-warning">Cannot pledge to your own project!</h2>
+        }
+        else if (hasContributed == true)
+        {
+            <h2 class="text-success">Thank you for contributing!</h2>
+        }
+        else
+        {
+            <div>
+                <h2>Support this Project</h2>
+                <form asp-controller="Projects" asp-action="Support" method="post">
+                    <input type="hidden" asp-for="ProjectId" />
+                    <div class="form-group">
+                        <input type="number" name="supportAmount" class="form-control" min="1" step="any" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Support!</button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -1,18 +1,29 @@
 @model FundStream.Models.LoginViewModel
 
-<form asp-action="LogIn" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
+<div class="card">
+    <div class="card-body">
+        <form asp-action="LogIn" method="post" class="d-flex flex-column gap-2">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+            <div class="row form-group">
+                <label asp-for="Email" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        
+            <div class="row form-group">
+                <label asp-for="Password" class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input asp-for="Password" class="form-control" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+        
+            <div class="text-end">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" class="form-control" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group mt-2">
-        <input type="submit" value="Login" class="btn btn-primary" />
-    </div>
-</form>
+</div>
