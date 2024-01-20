@@ -5,33 +5,31 @@ namespace FundStream.Models
 {
     public class User
     {
-        [Key] // This data annotation defines the property below as the primary key
-        public int UserId { get; set; } // Auto-incremented primary key
+        public User()
+        {
+            Projects = new HashSet<Project>();
+            Contributions = new HashSet<Contribution>();
+        }
 
-        [Required] // This property is required
-        [StringLength(50, MinimumLength = 2)] // String length constraints
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(50, MinimumLength = 2)]
-        public string LastName { get; set; }
+        [Key]
+        public int UserId { get; set; }
 
         [Required]
-        [EmailAddress] // Validates the property to contain a valid email address
-        public string Email { get; set; }
+        public string FirstName { get; set; } = string.Empty; // Initialize with default value
 
         [Required]
-        [DataType(DataType.Password)] // Marks the property as a password field
-        [MinLength(8)] // Minimum length for the password
-        public string Password { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
-        // You can add additional properties for timestamps, navigation properties, etc.
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now; // Default value
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
-        
-        // Navigation properties for related entities can also be included, for example:
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = string.Empty;
+
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contribution> Contributions { get; set; }
     }
+
 }

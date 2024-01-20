@@ -12,10 +12,14 @@ builder.Services.AddDbContext<FundStreamContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-// Add HttpContextAccessor and Session services if needed
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -30,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseSession(); // Use session middleware if you've added session services
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,8 +24,7 @@ namespace FundStream.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         // Navigation properties
-        // Virtual keyword enables EF's lazy loading
-        public virtual User Contributor { get; set; } // The user who made the contribution
-        public virtual Project Project { get; set; } // The project to which the contribution was made
+        public virtual User? Contributor { get; set; } // The user who made the contribution, can be nullable
+        public virtual Project? Project { get; set; } // The project to which the contribution was made, can be nullable
     }
 }

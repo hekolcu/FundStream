@@ -15,12 +15,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/hekolcu/Desktop/FundStream
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/hekolcu/Desktop/FundStream/Views/Home/Auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BdXRoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/hekolcu/Desktop/FundStream/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/hekolcu/Desktop/FundStream/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Home/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fTG9naW5QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Home/_RegisterPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fUmVnaXN0ZXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Projects/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Projects/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdHMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Projects/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdHMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/hekolcu/Desktop/FundStream/Views/Projects/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdHMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/hekolcu/Desktop/FundStream/Views/Shared/Error.cshtml]

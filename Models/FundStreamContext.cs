@@ -9,10 +9,9 @@ public class FundStreamContext: DbContext
     }
 
     // Define DbSets for your entities, for example:
-    public DbSet<User> Users { get; set; }
-    public DbSet<Project> Projects { get; set; }
-    public DbSet<Contribution> Contributions { get; set; }
-    // Add additional DbSets for other entities
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Project> Projects { get; set; } = null!;
+    public DbSet<Contribution> Contributions { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,7 +42,5 @@ public class FundStreamContext: DbContext
             .HasOne(c => c.Contributor) // One-to-many relationship with User
             .WithMany(u => u.Contributions) // Each User can have many Contributions
             .HasForeignKey(c => c.UserId); // Foreign key in the Contribution table
-                
-        // Configure relationships and other constraints here
     }
 }

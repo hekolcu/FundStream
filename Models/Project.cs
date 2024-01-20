@@ -7,26 +7,32 @@ namespace FundStream.Models
 {
     public class Project
     {
+        public Project()
+        {
+            // Initialize the Contributions collection to ensure it's never null
+            Contributions = new HashSet<Contribution>();
+        }
+
         [Key] // Defines this property as the primary key in the database
         public int ProjectId { get; set; }
 
         [Required] // This property is required
         [StringLength(255)] // Sets a maximum length for the project title
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
         [MinLength(20)] // Ensures the description has at least 20 characters
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
-        [Column(TypeName = "decimal(18, 2)")] // Sets the precision for the decimal type in the database
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal GoalAmount { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal AmountRaised { get; set; } = 0; // Default value
 
         [Required]
-        [DataType(DataType.Date)] // Ensures the property is treated as a date
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; } = DateTime.Now;
 
         [Required]
@@ -37,7 +43,7 @@ namespace FundStream.Models
         public int UserId { get; set; }
         
         // Navigation property for the User who created the project
-        public virtual User Creator { get; set; }
+        public virtual User? Creator { get; set; }
 
         // Navigation property for contributions made to the project
         public virtual ICollection<Contribution> Contributions { get; set; }

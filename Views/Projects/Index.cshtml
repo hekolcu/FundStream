@@ -1,0 +1,60 @@
+@model IEnumerable<FundStream.Models.Project>
+
+@{
+    ViewData["Title"] = "Projects";
+    var loggedInUserId = ViewBag.LoggedInUserId as int?;
+    var projectCount = ViewBag.ProjectCount as int?;
+    var totalAmountFunded = ViewBag.TotalAmountFunded as decimal? ?? 0;
+    var contributionCount = ViewBag.ContributionCount as int?;
+}
+
+<h2>Discover</h2>
+
+<h3>
+    @projectCount projects funded - @totalAmountFunded.ToString("C") raised - @contributionCount pledges made
+</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Goal Amount</th>
+        <th>Amount Raised</th>
+        <th>Funded (%)</th>
+        <th>Creator</th>
+        <th>End Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var project in Model)
+    {
+        <tr>
+            <td>@project.Title</td>
+            <td>@project.GoalAmount.ToString("C")</td>
+            <td>@project.AmountRaised.ToString("C")</td>
+            <td>@Math.Round((project.AmountRaised / project.GoalAmount) * 100, 2) %</td>
+            <td>
+                @if (project.Creator != null)
+                {
+                    @project.Creator.FirstName @project.Creator.LastName
+                }
+                else
+                {
+                    <p>Anonymous</p>
+                }
+            </td>
+            <td>@project.EndDate.ToShortDateString()</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@project.ProjectId">View</a>
+                @if (loggedInUserId.HasValue && project.UserId == loggedInUserId.Value)
+                {
+                    <text> | 
+                    <a asp-action="Delete" asp-route-id="@project.ProjectId">Delete</a>
+                    </text>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
