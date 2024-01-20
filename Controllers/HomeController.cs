@@ -52,9 +52,6 @@ public class HomeController : Controller
             _context.Users.Add(userForm);
             _context.SaveChanges();
 
-            // Here, you can set the user's ID in the session
-            HttpContext.Session.SetInt32("UserId", userForm.UserId);
-
             return RedirectToAction("Index");
         }
         return View("Auth");
